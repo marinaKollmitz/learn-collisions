@@ -192,14 +192,14 @@ class MapHandler:
         # visualization for debugging
         if plot:
             # plot the map with the cutout window
-            fig = plt.figure()
-            ax = fig.add_axes([0, 0, 1, 1])
+            fig, (ax1, ax2) = plt.subplots(1, 2)
+            plt.sca(ax1)
             plot_map(self.map, color_map_name="Greys")
             dx = 4.0 * np.cos(theta)
             dy = 4.0 * np.sin(theta)
 
-            ax.plot(map_x, map_y, "r*")
-            ax.arrow(map_x, map_y, dx, dy, width=0.2, color='r')
+            ax1.plot(map_x, map_y, "r*")
+            ax1.arrow(map_x, map_y, dx, dy, width=0.3, color='r')
 
             # plot bbox as polygon
             polygon = []
@@ -218,10 +218,10 @@ class MapHandler:
                             map_y + (np.sin(theta) * x_min + np.cos(theta) * y_max)])
 
             pol = Polygon(polygon, fill=False, edgecolor='r')
-            ax.add_artist(pol)
+            ax1.add_artist(pol)
 
             # plot the patch itself
-            plt.figure()
+            plt.sca(ax2)
             plot_map(patch, color_map_name="Greys")
 
         return patch
@@ -230,7 +230,7 @@ class MapHandler:
 if __name__ == '__main__':
     package_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
     map_yaml = os.path.join(package_dir,
-                            "datasets/SceneNetCollision/occ_maps/1Bathroom_1_labels_occ.yaml")
+                            "datasets/SceneNetCollision/occupancy_maps/1Bathroom_1_labels_occ.yaml")
 
     map_cutout = MapHandler(map_yaml, 20, thresholded_map=False)
 
