@@ -54,3 +54,8 @@ Example:
 python segment_map.py ../datasets/SceneNetCollision/occupancy_maps/1Bedroom_SceneFiles_occ.yaml ../networks/dilated_fcn_lenet-60/
 ```
 You should see a heatmap plot of the segmented occupancy map. Use the ```--save``` option to save the map image to the model directory.
+
+## License
+
+For academic usage, the code is released under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license. For any commercial purpose, please contact the authors.
+
