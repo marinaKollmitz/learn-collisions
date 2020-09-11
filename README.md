@@ -43,7 +43,7 @@ pip install torch torchvision
 pip install PyYAML scipy>=1.2.0 opencv-python matplotlib sklearn
 ```
 
-## Segment Occupancy Maps
+## Segment occupancy maps
 Use the ```segment_map.py``` script to segment an occupancy map with a trained model. Usage:
 ```
 cd $LEARN_COLLISIONS_HOME/scripts
@@ -54,6 +54,31 @@ Example:
 python segment_map.py ../datasets/SceneNetCollision/occupancy_maps/1Bedroom_SceneFiles_occ.yaml ../networks/dilated_fcn_lenet-60/
 ```
 You should see a heatmap plot of the segmented occupancy map. Use the ```--save``` option to save the map image to the model directory.
+
+## Train a new model
+Use the ```learn_collisions.py``` script to train a new collision classification network. Usage:
+```
+cd $LEARN_COLLISIONS_HOME/scripts
+python learn_collisions.py patch_size
+```
+Example:
+```
+python learn_collisions.py 40
+```
+Use the --model option to train a dilated version of the fully convolutional (FCN) LeNet like in our paper (option: --model dilated_fcn_lenet, default), or to train on a fully convolutional (FCN) version of the original LeNet (option: --model fcn_lenet).
+
+## Evaluate a trained model
+Use the ```evaluate_collisions.py``` script to evaluate the classification performance and the ```evaluate_segmentation``` script to evaluate the segmentation performance of a trained model. Usage:
+```
+cd $LEARN_COLLISIONS_HOME/scripts
+python evaluate_collisions.py network_dir
+python evaluate_segmentation.py network_dir
+```
+Example:
+```
+python evaluate_collisions.py ../networks/dilated_fcn_lenet-60/
+python evaluate_segmentation.py ../networks/dilated_fcn_lenet-60/
+```
 
 ## License
 
