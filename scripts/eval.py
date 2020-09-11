@@ -9,6 +9,9 @@ from networks.dilated_conv_lenet import DilatedFCNLeNet
 
 
 def load_net(network_dir, device):
+    """
+    Load network from network_dir.
+    """
 
     # find network input size from config
     config_path = os.path.join(network_dir, "config.yml")
@@ -36,6 +39,10 @@ def load_net(network_dir, device):
 
 
 def get_classification_scores(predictions, labels, plot=True):
+    """
+    Get classification scores from predictions and labels.
+    """
+
     collision_thresh = 0.5
     binary_predictions = predictions > collision_thresh
 
